@@ -2,16 +2,17 @@ import React from "react";
 import { Routes, Route } from 'react-router-dom'
 
 import { Home } from './pages'
-import { Nav } from './components'
+import { Layout } from './components'
 
 const App = () => {
 	return (
-		<div className="container mx-auto">
-			<Nav />
-			<Routes>
-				<Route path="/" element={<Home />} />
-			</Routes>
-		</div>
+		<Routes>
+			<Route path="/" element={<Layout />} >
+				<Route index element={<Home />} />
+				<Route path="/signin" element={<div>Sign In</div>} />
+				<Route path="/signup" element={<div>Sign Up</div>} />
+			</Route>
+		</Routes>
 	)
 };
 
