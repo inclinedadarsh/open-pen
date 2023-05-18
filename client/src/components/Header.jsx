@@ -7,7 +7,7 @@ const Header = () => {
 				<span>Open Pen:</span>
 				<span>Simplify, Express, Share.</span>
 			</h1>
-			<p className="mt-10 text-sm md:text-lg">
+			<p className="mt-10 text-sm md:text-lg text-gray-600">
 				Streamline your blogging experience with our minimalist platform
 				designed for easy content creation and seamless sharing. Focus
 				on what matters most - your ideas - while enjoying a
