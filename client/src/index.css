@@ -10,4 +10,14 @@
 		font-feature-settings: "cv11", "ss01";
 		font-variation-settings: opsz 32;
 	}
+
+	input {
+		font-feature-settings: "cv11", "ss01";
+		font-variation-settings: opsz 32;
+	}
+	
+	input::placeholder {
+		font-feature-settings: "cv11", "ss01";
+		font-variation-settings: opsz 32;
+	}
 }

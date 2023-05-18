@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from 'react-router-dom'
 
-import { Home } from './pages'
+import { Home, Signin } from './pages'
 import { Layout } from './components'
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
 		<Routes>
 			<Route path="/" element={<Layout />} >
 				<Route index element={<Home />} />
-				<Route path="/signin" element={<div>Sign In</div>} />
+				<Route path="/signin" element={<Signin />} />
 				<Route path="/signup" element={<div>Sign Up</div>} />
 			</Route>
 		</Routes>
