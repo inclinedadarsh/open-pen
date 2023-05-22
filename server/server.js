@@ -1,21 +1,14 @@
-import express from "express";
-import cors from "cors";
 import dotenv from "dotenv";
-import morgan from "morgan";
+import mongoose from "mongoose";
+import app from "./app.js";
 
 dotenv.config();
 
-const app = express();
-
-app.use(express.json());
-app.use(cors());
-if (process.env.NODE_ENV === "development") {
-	app.use(morgan("dev"));
-}
-
-app.get("/", (req, res) => {
-	res.send("Hello World!");
-});
+// Connecting to the database
+mongoose.connect(process.env.DATABASE_URI);
+const db = mongoose.connection;
+db.on("error", error => console.error(error));
+db.once("open", () => console.log("Connected to database"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
