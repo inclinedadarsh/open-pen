@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 import { Link } from "react-router-dom";
 import { Input, ButtonFull } from "../components";
@@ -10,20 +10,23 @@ const Login = () => {
 
 	const loginUser = async event => {
 		event.preventDefault();
+
 		try {
-			const res = await axios.post("http://localhost:3000/login", {
-				username,
-				password,
-			},
-			{
-				withCredentials: true
-			})
-			if (res.data.status == "failed") alert(res.data.message);
-			else alert("Login successful!");
-		} catch (error) {
-			alert(error)
+			const res = await axios.post(
+				"http://localhost:3000/login",
+				{
+					username,
+					password,
+				},
+				{
+					withCredentials: true,
+				}
+			);
+			alert("Login successful!");
+		} catch (err) {
+			alert(err.response.data.message);
 		}
-	}
+	};
 
 	return (
 		<div className="mt-12 w-96 mx-auto">

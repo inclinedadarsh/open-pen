@@ -17,7 +17,7 @@ const loginHandler = async (req, res) => {
 		const isPasswordCorrect = await bcrypt.compare(password, user.password);
 		if (!isPasswordCorrect) {
 			return res
-				.status(400)
+				.status(401)
 				.json({ status: "failed", message: "Invalid credentials" });
 		}
 

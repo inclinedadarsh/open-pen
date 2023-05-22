@@ -18,9 +18,10 @@ const Signup = () => {
 				password,
 			});
 
-			if (res.status == 200) alert("User created successfully. Please login.");
+			alert("User created successfully. Please login.");
 		} catch (error) {
-			alert(error)
+			// alert(error)
+			alert(error.response.data.message);
 		}
 	}
 
