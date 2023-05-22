@@ -7,6 +7,7 @@ import morgan from "morgan";
 
 // Importing the routes
 import signupRoute from "./routes/signupRoute.js";
+import loginRoute from "./routes/loginRoute.js";
 
 // Creating the express app
 const app = express();
@@ -20,5 +21,6 @@ if (process.env.NODE_ENV === "development") {
 
 // Setting up the routes
 app.use("/signup", signupRoute);
+app.use("/login", loginRoute);
 
 export default app;
