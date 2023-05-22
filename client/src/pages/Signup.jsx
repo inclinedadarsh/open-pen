@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { Input, ButtonFull } from "../components";
 
 const Signup = () => {
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
+	// const [name, setName] = useState("");
+	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
 	return (
@@ -14,8 +14,8 @@ const Signup = () => {
 				Create your account
 			</h1>
 			<form action="" className="mt-6">
-				<Input type="text" placeholder="Name" value={name} setValue={setName} />
-				<Input type="text" placeholder="Email" value={email} setValue={setEmail} />
+				{/* <Input type="text" placeholder="Name" value={name} setValue={setName} /> */}
+				<Input type="text" placeholder="Username" value={username} setValue={setUsername} />
 				<Input type="password" placeholder="Password" value={password} setValue={setPassword} />
 				<ButtonFull text="Create Account" type="submit" />
 			</form>
