@@ -21,8 +21,8 @@ const Signup = () => {
 			</form>
 			<p className="text-center mt-3 text-sm md:text-base text-gray-500">
 				Already have an account?{" "}
-				<Link to="/signin" className="text-black underline text-medium">
-					Sign In
+				<Link to="/login" className="text-black underline text-medium">
+					Login
 				</Link>
 			</p>
 		</div>

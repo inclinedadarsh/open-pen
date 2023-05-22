@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Input, ButtonFull } from "../components";
 
-const Signin = () => {
+const Login = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -25,7 +25,7 @@ const Signin = () => {
 					value={password}
 					setValue={setPassword}
 				/>
-				<ButtonFull text="Sign In" type="submit" />
+				<ButtonFull text="Login" type="submit" />
 			</form>
 			<p className="text-center mt-3 text-sm md:text-base text-gray-500">
 				Don't have an account?{" "}
@@ -37,4 +37,4 @@ const Signin = () => {
 	);
 };
 
-export default Signin;
+export default Login;

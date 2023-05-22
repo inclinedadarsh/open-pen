@@ -12,7 +12,7 @@ const Nav = () => {
         <span>Open Pen</span>
       </Link>
       <div className="flex gap-4 items-center">
-        <Link to="/signin" className='px-7 py-3 font-medium border-black border-2 hover:bg-black hover:text-white'>Sign in</Link>
+        <Link to="/login" className='px-7 py-3 font-medium border-black border-2 hover:bg-black hover:text-white'>Login</Link>
         <Link to="/signup" className='px-7 py-3 font-medium bg-black text-white border-black border-2 hover:bg-white hover:text-black'>Sign up</Link>
       </div>
     </nav>
