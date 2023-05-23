@@ -10,6 +10,7 @@ import cookieParser from "cookie-parser";
 import signupRoute from "./routes/signupRoute.js";
 import loginRoute from "./routes/loginRoute.js";
 import profileRoute from './routes/profileRoute.js'
+import logoutRoute from "./routes/logoutRoute.js";
 
 // Creating the express app
 const app = express();
@@ -29,5 +30,6 @@ app.use(cookieParser());
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
 app.use("/profile", profileRoute);
+app.use("/logout", logoutRoute);
 
 export default app;

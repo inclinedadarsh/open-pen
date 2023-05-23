@@ -16,16 +16,24 @@ const Nav = () => {
 					withCredentials: true,
 				});
 				setUsername(res.data.username);
-				console.log(res.data.username);
 			} catch (error) {
 				console.log(error);
 			}
 		};
 
 		fetchUsername();
-	}, [username]);
+	}, []);
 
-	const logoutUser = () => {}
+	const logoutUser = async () => {
+		try {
+			await axios.get("http://localhost:3000/logout", {
+				withCredentials: true,
+			})
+			setUsername(null);
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
 	return (
 		<nav className="flex justify-between items-center py-6">
