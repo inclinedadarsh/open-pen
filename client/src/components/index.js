@@ -5,5 +5,6 @@ import AllBlogs from './AllBlogs'
 import Layout from './Layout'
 import Input from './Input'
 import ButtonFull from './ButtonFull'
+import NavLink from './NavLink'
 
-export { Nav, Header, BlogCard, AllBlogs, Layout, Input, ButtonFull }
+export { Nav, Header, BlogCard, AllBlogs, Layout, Input, ButtonFull, NavLink }
