@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 
 import { Link } from "react-router-dom";
 import { Input, ButtonFull } from "../components";
 
+import { UserContext } from "../components/Layout";
+
 const Login = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+
+	const { setUserInfo } = useContext(UserContext);
 
 	const loginUser = async event => {
 		event.preventDefault();
@@ -22,6 +26,8 @@ const Login = () => {
 					withCredentials: true,
 				}
 			);
+			const userInfo = { username: res.data.username, _id: res.data.id }
+			setUserInfo(userInfo);
 			alert("Login successful!");
 		} catch (err) {
 			alert(err.response.data.message);

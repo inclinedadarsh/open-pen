@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 
 import LogoMark from "../assets/logo-mark.svg";
 import logoutIcon from "../assets/logout.svg";
@@ -6,22 +6,24 @@ import { Link } from "react-router-dom";
 import { NavLink } from ".";
 import axios from "axios";
 
+import { UserContext } from "../components/Layout";
+
 const Nav = () => {
-	const [username, setUsername] = useState(null);
+	const { userInfo, setUserInfo } = useContext(UserContext);
 
 	useEffect(() => {
-		const fetchUsername = async () => {
+		const fetchUserInfo = async () => {
 			try {
 				const res = await axios.get("http://localhost:3000/profile", {
 					withCredentials: true,
 				});
-				setUsername(res.data.username);
+				setUserInfo(res.data);
 			} catch (error) {
 				console.log(error);
 			}
 		};
 
-		fetchUsername();
+		fetchUserInfo();
 	}, []);
 
 	const logoutUser = async () => {
@@ -29,7 +31,7 @@ const Nav = () => {
 			await axios.get("http://localhost:3000/logout", {
 				withCredentials: true,
 			})
-			setUsername(null);
+			setUserInfo(null);
 		} catch (error) {
 			console.log(error);
 		}
@@ -50,7 +52,7 @@ const Nav = () => {
 				<span>Open Pen</span>
 			</Link>
 			<div className="flex gap-4 items-center">
-				{username ? (
+				{userInfo?.username ? (
 					<>
 						<NavLink
 							to="/create"

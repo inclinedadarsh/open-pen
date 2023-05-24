@@ -34,7 +34,7 @@ const loginHandler = async (req, res) => {
 
 		res.status(200)
 			.cookie("accessToken", accessToken)
-			.json({ status: "success", message: "Logged in successfully" });
+			.json({ status: "success", ...user._doc });
 	} catch (err) {
 		res.status(500).json(err);
 	}
