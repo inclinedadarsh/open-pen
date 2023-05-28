@@ -11,6 +11,7 @@ import signupRoute from "./routes/signupRoute.js";
 import loginRoute from "./routes/loginRoute.js";
 import profileRoute from './routes/profileRoute.js'
 import logoutRoute from "./routes/logoutRoute.js";
+import postsRoute from "./routes/postsRoute.js";
 
 // Creating the express app
 const app = express();
@@ -31,5 +32,6 @@ app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
 app.use("/profile", profileRoute);
 app.use("/logout", logoutRoute);
+app.use("/posts", postsRoute);
 
 export default app;

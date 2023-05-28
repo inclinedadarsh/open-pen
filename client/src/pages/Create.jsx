@@ -52,7 +52,11 @@ const Create = () => {
 			event.preventDefault();
 
 			// console.log(formData.entries());
-			await axios.post("http://localhost:3000/posts", formData);
+			const res = await axios.post(
+				"http://localhost:3000/posts",
+				formData
+			);
+			console.log(res);
 		} catch (err) {
 			console.log(err);
 		}
