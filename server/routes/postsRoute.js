@@ -3,10 +3,13 @@ import multer from "multer";
 
 const router = express.Router();
 
-const uploadMiddleware = multer({dest: "uploads/"});
+const uploadMiddleware = multer({ dest: "uploads/" });
 
-import postsHandler from "../handlers/postsHandler.js";
+import { postsPostHandler, postsGetHandler } from "../handlers/postsHandler.js";
 
-router.post("/", uploadMiddleware.single('file'), postsHandler);
+router
+	.route("/")
+	.post(uploadMiddleware.single("file"), postsPostHandler)
+	.get(postsGetHandler);
 
 export default router;

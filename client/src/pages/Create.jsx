@@ -3,6 +3,8 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 
+import { Navigate } from "react-router-dom";
+
 import { Input, ButtonFull } from "../components";
 
 const Create = () => {
@@ -10,6 +12,7 @@ const Create = () => {
 	const [summary, setSummary] = useState("");
 	const [content, setContent] = useState("");
 	const [files, setFiles] = useState([]);
+	const [redirect, setRedirect] = useState(false);
 
 	const modules = {
 		toolbar: [
@@ -54,13 +57,19 @@ const Create = () => {
 			// console.log(formData.entries());
 			const res = await axios.post(
 				"http://localhost:3000/posts",
-				formData
+				formData,
+				{ withCredentials: true }
 			);
 			console.log(res);
+			setRedirect(true);
 		} catch (err) {
 			console.log(err);
 		}
 	};
+
+	if (redirect) {
+		return <Navigate to="/" />;
+	}
 
 	return (
 		<div>

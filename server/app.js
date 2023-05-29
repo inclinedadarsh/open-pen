@@ -6,6 +6,11 @@ dotenv.config();
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 // Importing the routes
 import signupRoute from "./routes/signupRoute.js";
 import loginRoute from "./routes/loginRoute.js";
@@ -26,6 +31,7 @@ if (process.env.NODE_ENV === "development") {
 	app.use(morgan("dev"));
 }
 app.use(cookieParser());
+app.use("/uploads", express.static(`${__dirname}/uploads`));
 
 // Setting up the routes
 app.use("/signup", signupRoute);

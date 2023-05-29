@@ -1,8 +1,9 @@
 import fs from "fs";
+import jwt from "jsonwebtoken";
 
 import PostModel from "../models/PostModel.js";
 
-const postsHandler = async (req, res) => {
+const postsPostHandler = async (req, res) => {
 	const { title, summary, content } = req.body;
 
 	const { originalname, path } = req.file;
@@ -12,12 +13,42 @@ const postsHandler = async (req, res) => {
 
 	fs.renameSync(path, newPath);
 
-	const post = { title, summary, content, image: newPath };
+	// const post = { title, summary, content, image: newPath };
 
 	try {
-        const newPost = await PostModel.create(post);
-        // console.log(newPost);
-        res.status(201).json(newPost);
+		const { accessToken } = req.cookies;
+		// console.log(accessToken);
+		if (!accessToken)
+			return res.status(401).json({ error: "User not logged in" });
+		const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+		const info = jwt.verify(accessToken, ACCESS_TOKEN_SECRET);
+		// post.author = info.id;
+		// console.log(info);
+
+		const post = {
+			title,
+			summary,
+			content,
+			cover: newPath,
+			author: info.id,
+		};
+
+		const newPost = await PostModel.create(post);
+		res.status(201).json(newPost);
+	} catch (err) {
+		res.status(500).json({
+			message: "Internal server error. Try again later.",
+			err,
+		});
+	}
+};
+
+const postsGetHandler = async (req, res) => {
+	try {
+		const posts = await PostModel.find()
+			.populate("author", ["username"])
+			.sort({ createdAt: -1 });
+		res.status(200).json(posts);
 	} catch (err) {
 		res.status(500).json({
 			message: "Internal server error. Try again later.",
@@ -25,4 +56,4 @@ const postsHandler = async (req, res) => {
 	}
 };
 
-export default postsHandler;
+export { postsPostHandler, postsGetHandler };

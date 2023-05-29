@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose";
 
 const PostSchema = new mongoose.Schema(
@@ -14,6 +13,14 @@ const PostSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		author: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User",
+			required: true,
+		},
+		cover: {
+			type: String,
+		}
 	},
 	{
 		timestamps: true,
