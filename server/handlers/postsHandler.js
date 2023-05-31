@@ -56,4 +56,16 @@ const postsGetHandler = async (req, res) => {
 	}
 };
 
-export { postsPostHandler, postsGetHandler };
+const singlePostGetHandler = async (req, res) => {
+	const { id } = req.params;
+	try {
+		const postDoc = await PostModel.findById(id).populate("author", [
+			"username",
+		]);
+		res.status(200).json(postDoc);
+	} catch (error) {
+		res.status(404).json({ message: "Post not found", error });
+	}
+};
+
+export { postsPostHandler, postsGetHandler, singlePostGetHandler };

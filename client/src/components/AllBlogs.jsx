@@ -9,7 +9,6 @@ const AllBlogs = () => {
 	useEffect(() => {
 		const fetchPosts = async () => {
 			const res = await axios.get("http://localhost:3000/posts");
-			console.log(res.data);
 			setPosts(res.data);
 		};
 
