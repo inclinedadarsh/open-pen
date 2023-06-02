@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { format } from "date-fns";
+import { NavLink } from "../components/";
+
+import { UserContext } from "../components/Layout";
 
 const Post = () => {
+	const { userInfo } = useContext(UserContext);
+
 	const { id } = useParams();
 
 	const [post, setPost] = useState({});
@@ -47,6 +52,9 @@ const Post = () => {
 				{post.createdAt &&
 					format(new Date(post.createdAt), "MMM dd, yyyy hh:mm a")}
 			</p>
+			{userInfo.id == post.author?._id && (<div className="mx-auto w-fit my-6">
+				<NavLink text="Edit Post" to={`/edit/${post._id}`} type="secondary" />
+			</div>)}
 			<img
 				src={`http://localhost:3000/${post.cover}`}
 				alt={post.title}
