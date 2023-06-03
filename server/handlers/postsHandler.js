@@ -68,4 +68,54 @@ const singlePostGetHandler = async (req, res) => {
 	}
 };
 
-export { postsPostHandler, postsGetHandler, singlePostGetHandler };
+const postsUpdateHandler = async (req, res) => {
+	const { title, summary, content } = req.body;
+
+	const { id } = req.params;
+
+	let newPath = null;
+
+	if (req.file) {
+		const { originalname, path } = req.file;
+		const parts = originalname.split(".");
+		const ext = parts[parts.length - 1];
+		newPath = `${path}.${ext}`;
+
+		fs.renameSync(path, newPath);
+	}
+
+	try {
+		const postDoc = await PostModel.findById(id);
+
+		const { accessToken } = req.cookies;
+		if (!accessToken)
+			return res.status(401).json({ error: "User not logged in" });
+
+		const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+		const info = jwt.verify(accessToken, ACCESS_TOKEN_SECRET);
+
+		const isAuthor = postDoc.author.equals(info.id);
+
+		if (!isAuthor) 
+			return res.status(401).json({ error: "User not authorized" });
+
+		const post = {
+			title,
+			summary,
+			content,
+			cover: newPath || postDoc.cover,
+		}
+
+		const updatedPost = await postDoc.updateOne(post);
+		res.status(200).json(updatedPost);
+	} catch (error) {
+		res.status(404).json({ message: "Post not found", error });
+	}
+};
+
+export {
+	postsPostHandler,
+	postsGetHandler,
+	singlePostGetHandler,
+	postsUpdateHandler,
+};

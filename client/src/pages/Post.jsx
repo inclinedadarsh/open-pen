@@ -21,7 +21,7 @@ const Post = () => {
 					`http://localhost:3000/posts/${id}`
 				);
 				setPost(res.data);
-				console.log(res.data);
+				// console.log(res.data);
 			} catch (error) {
 				if (error.response.status === 404) {
 					setPost(null);
@@ -39,6 +39,10 @@ const Post = () => {
 	if (!post) {
 		return <div>{errMsg}</div>;
 	}
+
+	// console.log(`--------------------`);
+	// console.log(`userInfo.id: ${userInfo.id}`);
+	// console.log(`post.author?._id: ${post.author?._id}`);
 
 	return (
 		<div className="max-w-4xl mx-auto mt-6">

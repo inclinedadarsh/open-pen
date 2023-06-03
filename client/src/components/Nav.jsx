@@ -31,7 +31,7 @@ const Nav = () => {
 			await axios.get("http://localhost:3000/logout", {
 				withCredentials: true,
 			})
-			setUserInfo(null);
+			setUserInfo({});
 		} catch (error) {
 			console.log(error);
 		}
