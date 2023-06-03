@@ -8,8 +8,8 @@ const NavLink = ({ to, type, text }) => {
 			to={to}
 			className={
 				type === "primary"
-					? "px-7 py-3 font-medium bg-black text-white border-black border-2 hover:bg-white hover:text-black"
-					: "px-7 py-3 font-medium border-black border-2 hover:bg-black hover:text-white"
+					? "block px-7 py-3 font-medium bg-black text-white border-black border-2 hover:bg-white hover:text-black"
+					: "block px-7 py-3 font-medium border-black border-2 hover:bg-black hover:text-white"
 			}
 		>
 			{text}

@@ -15,9 +15,45 @@
 		font-feature-settings: "cv11", "ss01";
 		font-variation-settings: opsz 32;
 	}
-	
+
 	input::placeholder {
 		font-feature-settings: "cv11", "ss01";
 		font-variation-settings: opsz 32;
+	}
+
+	.post-content p {
+		@apply text-base mt-4;
+	}
+
+	.post-content a {
+		@apply text-yellow-600;
+	}
+
+	.post-content a:is(:hover, :focus) {
+		@apply text-black;
+	}
+
+	.post-content h1 {
+		@apply text-4xl font-bold my-8;
+	}
+
+	.post-content h2 {
+		@apply text-3xl font-semibold my-6;
+	}
+
+	.post-content h3 {
+		@apply text-2xl font-medium my-4;
+	}
+
+	.post-content blockquote {
+		@apply pl-4 border-l-4 border-solid border-gray-200 py-1 my-2;
+	}
+
+	.post-content ul {
+		@apply list-disc list-inside;
+	}
+
+	.post-content ol {
+		@apply list-decimal list-inside;
 	}
 }

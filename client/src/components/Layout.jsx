@@ -6,7 +6,7 @@ import { Nav } from "./";
 const UserContext = createContext();
 
 const Layout = () => {
-	const [userInfo, setUserInfo] = useState(null);
+	const [userInfo, setUserInfo] = useState({});
 
 	return (
 		<UserContext.Provider value={{ userInfo, setUserInfo }}>
