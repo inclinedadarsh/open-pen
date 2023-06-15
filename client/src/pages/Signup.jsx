@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from 'axios';
 
+import { Navigate } from "react-router-dom";
+
+import { UserContext } from "../components/Layout";
 
 import { Link } from "react-router-dom";
 import { Input, ButtonFull } from "../components";
@@ -9,21 +12,33 @@ const Signup = () => {
 	// const [name, setName] = useState("");
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [redirect, setRedirect] = useState(false)
+
+	const { setUserInfo } = useContext(UserContext);
 
 	const signupUser = async event => {
 		event.preventDefault();
+		console.log("singupUser ran");
 		try {
+			console.log("signupUser try ran");
 			const res = await axios.post("http://localhost:3000/signup", {
 				username,
 				password,
+			}, {
+				withCredentials: true
 			});
 
-			alert("User created successfully. Please login.");
+			const userInfo = { username: res.data.username, _id: res.data.id }
+			setUserInfo(userInfo);
+			alert("Accound successfully created!");
+			setRedirect(true)
 		} catch (error) {
 			// alert(error)
 			alert(error.response.data.message);
 		}
 	}
+
+	if (redirect) return <Navigate to='/' />
 
 	return (
 		<div className="mt-12 w-96 mx-auto">
